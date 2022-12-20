@@ -16,7 +16,10 @@ def _choose_task():
 
 
 with DAG(
-    "branching_v1", schedule_interval="@daily", default_args=default_args, catchup=False
+    "branching_v1",
+    schedule_interval="@daily",
+    default_args=default_args,
+    catchup=False,
 ) as dag:
 
     branch_task = BranchPythonOperator(
@@ -25,12 +28,17 @@ with DAG(
         do_xcom_push=False,
     )
 
-    upper_task = DummyOperator(task_id="a_upper_task_branching_v1")
+    upper_task = DummyOperator(
+        task_id="a_upper_task_branching_v1",
+    )
 
-    lower_task = DummyOperator(task_id="b_lower_task_branching_v1")
+    lower_task = DummyOperator(
+        task_id="b_lower_task_branching_v1",
+    )
 
     final_task = DummyOperator(
-        task_id="final_task_branching_v1", trigger_rule="none_failed_or_skipped"
+        task_id="final_task_branching_v1",
+        trigger_rule="none_failed_or_skipped",
     )
 
     branch_task >> [upper_task, lower_task] >> final_task
