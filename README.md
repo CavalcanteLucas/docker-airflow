@@ -35,3 +35,7 @@ Go to Admin -> Connections and Edit "postgres_default" set this values (equivale
 - Password : postgres
 
 Enjoy!
+
+## Reference
+
+- https://www.youtube.com/watch?v=aRfuZ4DVqUU
